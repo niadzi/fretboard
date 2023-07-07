@@ -1,0 +1,16 @@
+// Guitar ojbect exists
+Gutar has
++ n strings
++ n frets
++ an array of 12 notes, on or off
++ a scale length
++ a scale name>
++ a root
+
+
+Guitar can
++ draw as SVG / CSS
++ update
++ change Root note
++ turn intervals on and off - intervalOn(i), intervalOff(i)
++ be in scale mode or chart mode (scale mode has shapes to represent intervals)

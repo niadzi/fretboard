@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>RainbowTech : Guitar Modes Explorer</title>
+    <meta name="description" content="Guitar Modes Explorer built by Niadzi Muzira. Explore the seven modes of the major scale.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style type="text/css">
+        #sticky-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+        
+        a,
+        a:visited {
+            color: #666;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            color: #aaa;
+            text-decoration: none;
+        }
+        
+        h4 .more-info {
+            text-align: center;
+            font-family: 'Work Sans', sans-serif;
+        }
+    </style>
+
+</head>
+
+<body onresize="rescaleGuitar()">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Rainbow Tech : Guitar Fretboard</h1>
+                    <h3>Explore the seven modes of the major scale</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div id="fretboard">
+                    <div id="nut"></div>
+                    <div id="string-1" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-1">E</h2>
+                    </div>
+                    <div id="string-2" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-2">B</h2>
+                    </div>
+                    <div id="string-3" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-3">G</h2>
+                    </div>
+                    <div id="string-4" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-4">D</h2>
+                    </div>
+                    <div id="string-5" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-5">A</h2>
+                    </div>
+                    <div id="string-6" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-6">E</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" id="interface-row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="panel">
+                    <ul class="intervals-button-list " id="intervals-button-list">
+                        <li><button onclick="toggleInterval(0) " class="btn btn-primary badge " data-status="off " id="interval-button-0">R</button></li>
+                        <li><button onclick="toggleInterval(1) " class="btn btn-primary badge " data-status="off " id="interval-button-1">m2</button></li>
+                        <li><button onclick="toggleInterval(2) " class="btn btn-primary badge " data-status="off " id="interval-button-2">M2</button></li>
+                        <li><button onclick="toggleInterval(3) " class="btn btn-primary badge " data-status="off " id="interval-button-3">m3</button></li>
+                        <li><button onclick="toggleInterval(4) " class="btn btn-primary badge " data-status="off " id="interval-button-4">M3</button></li>
+                        <li><button onclick="toggleInterval(5) " class="btn btn-primary badge " data-status="off " id="interval-button-5">P4</button></li>
+                        <li><button onclick="toggleInterval(6) " class="btn btn-primary badge " data-status="off " id="interval-button-6">T</button></li>
+                        <li><button onclick="toggleInterval(7) " class="btn btn-primary badge " data-status="off " id="interval-button-7">P5</button></li>
+                        <li><button onclick="toggleInterval(8) " class="btn btn-primary badge " data-status="off " id="interval-button-8">m6</button></li>
+                        <li><button onclick="toggleInterval(9) " class="btn btn-primary badge " data-status="off " id="interval-button-9">M6</button></li>
+                        <li><button onclick="toggleInterval(10) " class="btn btn-primary badge " data-status="off " id="interval-button-10">m7</button></li>
+                        <li><button onclick="toggleInterval(11) " class="btn btn-primary badge " data-status="off " id="interval-button-11">M7</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-2 col-xs-offset-3">
+                <select id="scale-type-select" size="7" onChange="Guitar.selectMode(this.value); " multiple class="form-control ">
+                </select>
+            </div>
+            <div class="col-xs-6 instructions">
+                <h5>Instructions</h5>
+                <h6>1. Select a root note by clicking a note on the fretboard.</h6>
+                <h6>2. Select a mode from the list to display it.</h6>
+                <h6>3. Click an interval to switch it on or off.</h6>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+    </div>
+
+    <footer id="sticky-footer">
+        <div class=" container ">
+            <p class="text-muted ">Built by <a href="http://www.radiant-minds.co.uk" target="_blank">Niadzi Muzira</a>.</p>
+        </div>
+    </footer>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js "></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js "></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js "><\/script>')
+    </script>
+    <script src="js/main.js "></script>
+
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-81283035-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+
+</html>

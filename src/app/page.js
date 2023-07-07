@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Fretboard from "./Components/Fretboard";
 import DynamicFretboard from "./Components/DynamicFretboard";
+import { ActiveIntervalsProvider } from "./Components/Store/ActiveIntervalsContext";
+import { TonicProvider } from "./Components/Store/TonicContext";
 
 export default function Home() {
   return (
@@ -27,7 +29,12 @@ export default function Home() {
           />
         </a>
       </div>
-      <DynamicFretboard />
+      <ActiveIntervalsProvider>
+        <TonicProvider>
+          <DynamicFretboard />
+          <FretboardSettings />
+        </TonicProvider>
+      </ActiveIntervalsProvider>
     </main>
   );
 }

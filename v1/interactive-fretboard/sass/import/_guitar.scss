@@ -1,0 +1,196 @@
+/* ==========================================================================
+   Guitar Fretbooard
+   ========================================================================== */
+
+#fretboard {
+    border: 1px solid #855137;
+    width: 100%;
+    height: calc(46 * 6px);
+    display: block;
+    background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/retina_wood.png');
+    // background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/wood_1.png);
+    //  background-image: url(http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/bgnoise_lg.png);
+}
+
+#nut {
+    height: 276px;
+    width: 20px;
+    margin: 0;
+    margin-left: -10px;
+    margin-top: -1px;
+    background: #806D5C;
+    box-shadow: 2px 0 2px 0px rgba(11, 10, 10, 0.54);
+    position: absolute;
+    z-index: 300;
+}
+
+.fret {
+    border-right: 2px solid rgba(133, 81, 55, 0.26);
+    display: inline-block;
+    height: 40px;
+    margin-top: 5px;
+}
+
+.guitar-string {
+    height: 46px;
+    /*calc(100% / 6);*/
+    /*border: 1px solid #eee;*/
+    //clear: both;
+    display: block;
+}
+
+.guitar-string hr {
+    /* background: #666;*/
+    position: relative;
+    top: 20px;
+    margin: 0;
+    height: 1px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
+    background: #e2e2e2;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    //    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0);
+    /* IE6-9 */
+    opacity: 0.5;
+}
+
+.guitar-string h2 {
+    display: none;
+    position: absolute;
+    margin-right: 20px;
+    height: 46px;
+    z-index: 500;
+}
+
+ol.fretsList {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+
+/* ==========================================================================
+   Fretboard Markers
+   ========================================================================== */
+
+.highlight {
+    height: 25px;
+    width: 25px;
+    border: 0px solid hotpink;
+    margin: auto;
+    text-align: center;
+    border-radius: 100%;
+    color: #333;
+    font-size: 14px;
+    margin-top: -8px;
+    opacity: 1;
+    position: relative;
+    z-index: 5;
+    text-shadow: 0 1px 2px #eee;
+}
+
+.fretnote {
+    font-size: 12px;
+    margin-top: 5px;
+    position: relative;
+    opacity: 0.7;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.interval-on {
+    color: black;
+}
+
+div.fretnote.open {
+    font-family: $serif;
+}
+
+.marker {
+    background: url('../images/apple-icon.png');
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+    opacity: 0.8;
+    border: 1px solid #3e555c;
+    border-radius: 100%;
+    position: relative;
+}
+
+.marker-1 {
+    top: 10px;
+    margin: auto;
+}
+
+.marker-2a {
+    top: -35px;
+    margin: auto;
+}
+
+.marker-2b {
+    top: 35px;
+    margin: auto;
+}
+
+
+/* ==========================================================================
+   Interval colours
+========================================================================== */
+
+.interval-on {
+    opacity: 1;
+}
+
+.root {
+    background: #ff2424;
+}
+
+.m2 {
+    background: #ff9e24;
+}
+
+.M2 {
+    background: #ffc424;
+}
+
+.m3 {
+    background: #ffea00;
+}
+
+.M3 {
+    background: #ecfb3b;
+}
+
+.p4 {
+    background: #a9ff55;
+}
+
+.t6 {
+    background: #2dffbd;
+}
+
+.p5 {
+    background: #7cc9fa;
+}
+
+.m6 {
+    background: #b43fff;
+}
+
+.M6 {
+    background: #d537e3;
+}
+
+.m7 {
+    background: #ff2ecc;
+}
+
+.M7 {
+    background: #ff45ae;
+}

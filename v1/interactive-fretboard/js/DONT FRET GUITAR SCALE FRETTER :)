@@ -1,0 +1,60 @@
+DONT FRET GUITAR SCALE FRETTER :)
+
+Example 
+--
+6 Strings
+23 Frets
+Each string has a root note
+Fret note/names are counted up from the root note
+Each fret has a name
+
+-- 
+there are 6 * 23 frets on the guitar neck
+
+
+String1.root = "E";
+String1.fret(3) = "G";
+
+Objects
+guitar - 6 strings
+->draw 
+->drawScale(scale)
+
+string - Root, position
+
+
+
+
+Tests!
+what does the fretboard do?
+
+
+FRETBOARD should exist
+fretboard should have 23 * 6 frets
+
+getFretHtml(string,fretnumber)
+should return the html element for the fret
+
+
+
+defines
+NOTES, INTERVALS, SCALES (delete), MODES, FRETWIDTHS,
+
+defines 
+neckLength()
+getnote() - can test
+
+currentScale -- is this eever used?
+NUM_FRETS = 12
+ROOT = A
+SCALE_ROOT = A
+
+define Guitar , Guitar string 
+refreshFretboard() -> guitar-strings.refresh
+colourintervalbuttons() -> updates the colour of the interval buttons
+
+define html fretboard and scale_type_selector
+
+create Guitar Strings x 6 
+
+

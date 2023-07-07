@@ -1,0 +1,169 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css"> 
+        
+        <link rel="stylesheet" href="css/main.css">        
+
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script> 
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>        
+        <script src="http://code.jquery.com/qunit/qunit-1.20.0.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.20.0.css">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container">
+            <div class="row"><div class="col-xs-12"><h1>Modal Fretboard</h1></div></div>
+            <div class="row">
+                <div id="fretboard">
+                    <div id="nut"></div>
+                    <div id="string-1" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-1">E</h2>
+                    </div>
+                    <div id="string-2" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-2">B</h2>
+                    </div>
+                    <div id="string-3" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-3">G</h2>
+                    </div>
+                    <div id="string-4" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-4">D</h2>
+                    </div>
+                    <div id="string-5" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-5">A</h2>
+                    </div>
+                    <div id="string-6" class="guitar-string">
+                        <hr>
+                        <h2 id="string-head-6">E</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="interface-row">
+                <div class="col-xs-2 hidden">
+                    <h3>Key</h3>
+                    <h4 id="keyRootDisplay"></h4>
+                    <label class="radio-inline">
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Major" onClick="setTonality('Major')" checked="checked"> Major
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Minor" onClick="setTonality('Minor')"> Minor
+                    </label>
+                </div> 
+
+                <div class="col-xs-1 hidden">
+                    <select id="scale-root-select" onChange="setScaleRoot()" multiple class="form-control">
+                    </select>
+                    <label for="scale-root-select">
+                        Select Root Note
+                    </label>
+                </div>
+                <div class="col-xs-2">
+                    <h3>Mode</h3>
+                    <select id="scale-type-select" onChange="setScaleType()" multiple class="form-control">
+                    </select>
+                    <label for="scale-root-select">
+                        Select Scale
+                    </label>                    
+                </div>                 
+                <div class="col-xs-7">
+                    <h3>Intervals</h3>
+                    <div class="panel">
+                        <ul id="intervals-button-list"  class="intervals-button-list">
+                            <li><button onclick="toggleInterval(0)" class="btn btn-primary badge" data-status="off" id="interval-button-0">R</button></li>
+                            <li><button onclick="toggleInterval(1)" class="btn btn-primary badge" data-status="off" id="interval-button-1">m2</button></li>
+                            <li><button onclick="toggleInterval(2)" class="btn btn-primary badge" data-status="off" id="interval-button-2">M2</button></li>
+                            <li><button onclick="toggleInterval(3)" class="btn btn-primary badge" data-status="off" id="interval-button-3">m3</button></li>
+                            <li><button onclick="toggleInterval(4)" class="btn btn-primary badge" data-status="off" id="interval-button-4">M3</button></li>
+                            <li><button onclick="toggleInterval(5)" class="btn btn-primary badge" data-status="off" id="interval-button-5">P4</button></li>
+                            <li><button onclick="toggleInterval(6)" class="btn btn-primary badge" data-status="off" id="interval-button-6">T</button></li>
+                            <li><button onclick="toggleInterval(7)" class="btn btn-primary badge" data-status="off" id="interval-button-7">P5</button></li>
+                            <li><button onclick="toggleInterval(8)" class="btn btn-primary badge" data-status="off" id="interval-button-8">m6</button></li>
+                            <li><button onclick="toggleInterval(9)" class="btn btn-primary badge" data-status="off" id="interval-button-9">M6</button></li>
+                            <li><button onclick="toggleInterval(10)" class="btn btn-primary badge" data-status="off"id="interval-button-10">m7</button></li>
+                            <li><button onclick="toggleInterval(11)" class="btn btn-primary badge" data-status="off"id="interval-button-11">M7</button></li>
+                        </ul>
+
+
+                        <ul id="dorian-intervals-button-list"  class="intervals-button-list">
+                            <li><button onclick="toggleInterval(0)" class="btn btn-primary badge" data-status="off" id="interval-button-0">R</button></li>
+                            <li><button onclick="toggleInterval(1)" class="btn btn-primary badge" data-status="off" id="interval-button-1">m2</button></li>
+                            <li><button onclick="toggleInterval(2)" class="btn btn-primary badge" data-status="off" id="interval-button-2">M2</button></li>
+                            <li><button onclick="toggleInterval(3)" class="btn btn-primary badge" data-status="off" id="interval-button-3">m3</button></li>
+                            <li><button onclick="toggleInterval(4)" class="btn btn-primary badge" data-status="off" id="interval-button-4">M3</button></li>
+                            <li><button onclick="toggleInterval(5)" class="btn btn-primary badge" data-status="off" id="interval-button-5">P4</button></li>
+                            <li><button onclick="toggleInterval(6)" class="btn btn-primary badge" data-status="off" id="interval-button-6">T</button></li>
+                            <li><button onclick="toggleInterval(7)" class="btn btn-primary badge" data-status="off" id="interval-button-7">P5</button></li>
+                            <li><button onclick="toggleInterval(8)" class="btn btn-primary badge" data-status="off" id="interval-button-8">m6</button></li>
+                            <li><button onclick="toggleInterval(9)" class="btn btn-primary badge" data-status="off" id="interval-button-9">M6</button></li>
+                            <li><button onclick="toggleInterval(10)" class="btn btn-primary badge" data-status="off"id="interval-button-10">m7</button></li>
+                            <li><button onclick="toggleInterval(11)" class="btn btn-primary badge" data-status="off"id="interval-button-11">M7</button></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="row hidden">
+                        <div class="col-xs-12">
+                            <h4>Instructions</h4>
+                            <ol class="list-inline">
+                                <li>1. Select the Key by clicking a note on the fretboard.</li>
+                                <li>2. Select the tonality.</li>
+                            </ol>
+
+                        </div>
+                    </div>                    
+                </div>     
+
+                <div class="col-xs-2 hidden">
+                 <button type="button" class="btn btn-primary" onClick="setScaleRoot()">
+                        Set scale root
+                         <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" onClick="refreshFretboard()">
+                        Refresh fretboard
+                         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                    </button>  
+                    </select>
+                </div>    
+
+            </div>
+        </div>
+
+<!--         <div id="qunit"></div>
+        <div id="qunit-fixture"></div>    -->     
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="js/vendor/processing-1.4.16.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/modal_colours.js"></script>
+        <script src="js/tests.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>

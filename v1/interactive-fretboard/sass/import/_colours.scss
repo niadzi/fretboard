@@ -1,0 +1,51 @@
+/******************************************************************
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+******************************************************************/
+
+/*********************
+COLORS
+*********************/
+
+$c_root : red;
+$c_m2   : red;
+$c_M2   : red;
+$c_m3   : red;
+$c_M3   : red;
+$c_P4   : red;
+$c_T    : red;
+$c_P5   : red;
+$c_m6   : red;
+$c_M6   : red;
+$c_m7   : red;
+$c_M7   : red;
+
+$alert-yellow:      #ebe16f;
+$alert-red:         #fbe3e4;
+$alert-green:       #e6efc2;
+$alert-blue:        #d5edf8;
+
+$black:             #323944;
+$white:             #fff;
+
+$light-gray:        #f8f9fa;
+$gray:              #eaedf2;
+$text-color:        #5c6b80;
+$meta-gray:         #9fa6b4;
+
+$tan:               #eceee5;
+
+$green:             #7dd667;
+
+$bones-pink:        #f01d4f;
+$blue:              #2980b9;
+
+$link-color:        $bones-pink;
+$link-hover:        darken($link-color, 9%);
+
+$border-color:      #ccc;
+$disabled-gray:     #cfcfcf;
