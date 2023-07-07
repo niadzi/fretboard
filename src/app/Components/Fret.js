@@ -3,7 +3,11 @@ import * as Tonal from "tonal";
 import "./Fret.css";
 import FretWidths from "./FretWidths";
 
+// could send array of notes(pitch classes) on eg  [A, C, E]
+// activePitches = [A, C, E, G, B, D];
+// but then each Fret has to be re-rendered on each change
 const Fret = (props) => {
+  const [isTonic, setIsTonic] = React.useState(false);
   return (
     <li
       id={props.uid}
