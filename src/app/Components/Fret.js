@@ -4,23 +4,29 @@ import "./Fret.css";
 import FretWidths from "./FretWidths";
 import { useScale } from "./Store/ScaleContext";
 
-function Fret({ uid, number, note, fretWidth }) {
+function Fret(props) {
   const { currentScale, setCurrentScale, rootNote, setRootNote } = useScale();
 
   // Now you can use currentScale, setCurrentScale, rootNote, and setRootNote in this component
   //const { setRootNote } = useScale();
 
   const handleClick = () => {
-    setRootNote(note);
+    setRootNote(props.note);
   };
 
   return (
-    <li key={uid} className="fret" onClick={handleClick}>
-      {console.info("FRET!")}
-      {console.log(props)}
+    <li
+      key={"string-" + props.order + "-fret-" + props.index}
+      id={"string-" + props.order + "-fret-" + props.index}
+      className="fret"
+      onClick={handleClick}
+    >
+      {/*{console.info("FRET!")}*/}
+      {/*{console.log(props)}*/}
       <div
-        key={uid}
-        id={note}
+        key={"string-" + props.order + "-fret-div-" + props.index}
+        id={"string-" + props.order + "-fret-div-" + props.index}
+        //id={props.note}
         className="fret"
         //width={FretWidths[props.number]}
         // data-note={note}
@@ -28,7 +34,7 @@ function Fret({ uid, number, note, fretWidth }) {
         // data-interval="7"
         // style={{ width: fretWidth + "px" }}
       >
-        {note}
+        {props.note}
       </div>
     </li>
   );

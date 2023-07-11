@@ -35,35 +35,36 @@ function Fretboard(props) {
   };
 
   // Setup state variables based on user input
-  const [tuning, setTuning] = useState(["E2", "A2", "D3", "G3", "B3", "E4"]);
+  const [tuning, setTuning] = useState(["E4", "B3", "G3", "D3", "A2", "E2"]);
   const [numberOfFrets, setNumberOfFrets] = useState(16);
   const [rightHanded, setRightHanded] = useState(true);
   const [tonic, setTonic] = useState("C");
 
   // Reverse tuning if !left handed
-  if (rightHanded) {
-    // setTuning(tuning.reverse());
-    // console.log(tuning);
-  }
+  // if (rightHanded) {
+  //   //setTuning(tuning.reverse());
+  //   console.log(tuning.reverse());
+  // }
   // Create array of strings based on tuning & handedness
-  let guitarStrings = tuning
-    .reverse()
-    .map((n, i) => (
-      <String
-        key={i}
-        order={i}
-        rootnote={n}
-        numfrets={numberOfFrets}
-        tonic={tonic}
-        fretwidths={calculateCurrentFretWidths(
-          numberOfFrets,
-          calculateNeckLength(numberOfFrets),
-        )}
-        currentscale={currentScale}
-      />
-    ));
 
-  return <div id="fretboard">{guitarStrings}</div>;
+  return (
+    <div id="fretboard">
+      {tuning.map((n, i) => (
+        <String
+          key={"string--" + i}
+          order={i}
+          rootnote={n}
+          numfrets={numberOfFrets}
+          // tonic={tonic}
+          fretwidths={calculateCurrentFretWidths(
+            numberOfFrets,
+            calculateNeckLength(numberOfFrets),
+          )}
+          // currentscale={currentScale}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default Fretboard;

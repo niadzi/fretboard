@@ -1,5 +1,5 @@
 import React from "react";
-//import { useTonic } from "../Store/TonicContext";
+import { useTonic } from "../Store/TonicContext";
 import { Notes } from "../Utils/MusicTheory";
 
 function TonicSelector() {

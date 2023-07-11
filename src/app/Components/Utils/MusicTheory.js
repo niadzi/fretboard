@@ -116,6 +116,14 @@ export const Intervals = [
   "M7",
 ];
 
+export class Note {
+  constructor(name, interval, active) {
+    this.name = name;
+    this.interval = interval;
+    this.active = active;
+  }
+}
+
 //export default Notes; // = Scales;
 //export default PitchedNotes;
 //export default Scales;

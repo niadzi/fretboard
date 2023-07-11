@@ -4,7 +4,7 @@ import * as Tonal from "tonal";
 //import Notes from "./Utils/MusicTheory";
 import "./String.css";
 import { useScale } from "./Store/ScaleContext";
-import { Notes, Scales } from "./Utils/MusicTheory";
+import { Notes, Scales, PitchedNotes } from "./Utils/MusicTheory";
 const String = (props) => {
   const { currentScale } = useScale();
   //const stringRoot = currentScale[0];
@@ -13,33 +13,36 @@ const String = (props) => {
   // calculate array of notes starting from root note where length = numberOfFret
   function calculateNotes(rootNote, length) {
     let notes = [];
-    let noteIndex = Notes.findIndex((val) => val === rootNote);
+    let noteIndex = PitchedNotes.findIndex((val) => val === rootNote);
     for (let i = 0; i < length; i++) {
-      notes.push(Notes[i + noteIndex]);
+      notes.push(PitchedNotes[i + noteIndex]);
     }
     return notes;
   }
-  const fretNotes = calculateNotes(props.rootNote, props.numberOfFrets);
+  const fretNotes = calculateNotes(props.rootnote, props.numfrets);
+  console.log(fretNotes);
 
   return (
     <ol
-      key={props.order}
+      key={"string-" + props.order}
+      id={"string--" + props.order}
       className="string"
-      rootnote={props.rootNote}
+      rootnote={props.rootnote}
       order={props.order}
     >
       <label key={"label" + props.order}>{props.rootNote}</label>
-      {console.info("STRING!")}
-      {console.log(props)}
+      {/*{console.info("STRING!")}*/}
+      {/*{console.log(props)}*/}
 
       {fretNotes.map((n, i) => (
         <Fret
-          uid={props.order.toString() + i.toString()}
-          key={props.order.toString() + i.toString()}
-          number={i}
+          //uid={props.order.toString() + i.toString()}
+          key={"string--" + props.order + "_fret_" + i}
+          index={i}
           note={n}
-          interval={i}
-          width={props.fretWidths[i]}
+          string={props.order}
+          //interval={i}
+          width={props.fretwidths[i]}
         />
       ))}
     </ol>
