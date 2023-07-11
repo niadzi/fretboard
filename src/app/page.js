@@ -1,11 +1,34 @@
 "use client";
 import Image from "next/image";
-import Fretboard from "./Components/Fretboard";
+import dynamic from "next/dynamic";
+//import NoSSR from "react-no-ssr";
+import React, { useState, useEffect } from "react";
+import { ScaleProvider } from "./Components/Store/ScaleContext";
+//import { useScale } from "./Store/ScaleContext";
+import { ScaleSelector } from "./Components/UI/ScaleSelector";
+import FretBoard from "./Components/Fretboard";
 import DynamicFretboard from "./Components/DynamicFretboard";
-import { ActiveIntervalsProvider } from "./Components/Store/ActiveIntervalsContext";
+import {
+  ActiveIntervalsProvider,
+  useActiveIntervals,
+} from "./Components/Store/ActiveIntervalsContext";
 import { TonicProvider } from "./Components/Store/TonicContext";
+import FretboardSettings from "./Components/UI/FretboardSettings";
+import {
+  Notes,
+  Scales,
+  PitchedNotes,
+  Intervals,
+} from "./Components/Utils/MusicTheory";
+import { TonicSelector } from "./Components/UI/TonicSelector";
+
+//import FretBoard from "./FretBoard"; // Assuming you have a FretBoard component
 
 export default function Home() {
+  const NoSSRFretboard = dynamic(() => import("./Components/Fretboard"), {
+    ssr: false,
+  });
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -29,12 +52,15 @@ export default function Home() {
           />
         </a>
       </div>
-      <ActiveIntervalsProvider>
+      <ScaleProvider>
         <TonicProvider>
-          <DynamicFretboard />
-          <FretboardSettings />
+          <ActiveIntervalsProvider>
+            <ScaleSelector />
+            <TonicSelector />
+            <NoSSRFretboard active={useActiveIntervals} />
+          </ActiveIntervalsProvider>
         </TonicProvider>
-      </ActiveIntervalsProvider>
+      </ScaleProvider>
     </main>
   );
 }

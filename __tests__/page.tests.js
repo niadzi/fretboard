@@ -1,58 +1,57 @@
-import { render, screen } from "@testing-library/react";
-import Home from "./app/page";
-import Fretboard from "./app/Components/Fretboard";
-import String from "./app/Components/String";
-import Fret from "./app/Components/Fret";
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import { ScaleProvider, useScale } from "./ScaleContext";
+import { FretBoard, GuitarString, Fret } from "./Fretboard";
 
-// write a test for the home page
-describe("Home", () => {
-  it("renders a heading", () => {
-    render(<Home />);
-    //
+// Mock the ScaleProvider
+jest.mock("./ScaleContext", () => ({
+  useScale: jest.fn(),
+  ScaleProvider: jest.fn(({ children }) => children),
+}));
 
-    // const heading = screen.getByRole('heading', {
-    //     name: /welcome to next\.js!/i,
-    // })
-    //
-    // expect(heading).toBeInTheDocument()
-  });
+test("renders fretboard", () => {
+  const { getByTestId } = render(<FretBoard />);
+  const fretboardElement = getByTestId("fretboard");
+  expect(fretboardElement).toBeInTheDocument();
 });
 
-// write a test for the fretboard component
-describe("Fretboard", () => {
-  it("renders a fretboard", () => {
-    render(<Fretboard />);
+test("displays correct note on GuitarString", () => {
+  const note = "C";
+  const { getByText } = render(
+    <ScaleProvider>
+      <GuitarString note={note} />
+    </ScaleProvider>,
+  );
 
-    // const heading = screen.getByRole('heading', {
-    //     name: /welcome to next\.js!/i,
-    // })
-    //
-    // expect(heading).toBeInTheDocument()
-  });
+  const noteElement = getByText(note);
+  expect(noteElement).toBeInTheDocument();
 });
 
-// write a test for the string component
-describe("String", () => {
-  it("renders a string", () => {
-    render(<String />);
+test("displays correct note on Fret", () => {
+  const note = "C";
+  const { getByText } = render(
+    <ScaleProvider>
+      <Fret note={note} />
+    </ScaleProvider>,
+  );
 
-    // const heading = screen.getByRole('heading', {
-    //     name: /welcome to next\.js!/i,
-    // })
-    //
-    // expect(heading).toBeInTheDocument()
-  });
+  const noteElement = getByText(note);
+  expect(noteElement).toBeInTheDocument();
 });
 
-// write a test for the fret component
-describe("Fret", () => {
-  it("renders a fret", () => {
-    render(<Fret />);
+test("updates root note when Fret is clicked", () => {
+  const note = "C";
+  const { getByText } = render(
+    <ScaleProvider>
+      <Fret note={note} />
+    </ScaleProvider>,
+  );
 
-    // const heading = screen.getByRole('heading', {
-    //     name: /welcome to next\.js!/i,
-    // })
-    //
-    // expect(heading).toBeInTheDocument()
-  });
+  const fretElement = getByText(note);
+  fireEvent.click(fretElement);
+
+  // We'll assume that useScale().rootNote gives us the current root note
+  const { rootNote } = useScale();
+  expect(rootNote).toBe(note);
 });

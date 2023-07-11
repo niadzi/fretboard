@@ -4,9 +4,15 @@ import * as React from "react";
 import String from "./String";
 import { useState } from "react";
 import FretWidths from "./FretWidths";
-//import DebounceInput from "react-debounce-input";
+import { useScale } from "./Store/ScaleContext";
+import { ScaleSelector } from "./UI/ScaleSelector";
+import { ActiveIntervalsProvider } from "./Store/ActiveIntervalsContext";
+//import ActiveIntervals from "./ActiveIntervals";
 
-const Fretboard = (props) => {
+function Fretboard(props) {
+  console.log(props);
+  const { currentScale } = useScale();
+
   const [isServer, setIsServer] = useState(true);
   const calculateNeckLength = (numberOfFrets) => {
     let neckLength = 0;
@@ -31,35 +37,33 @@ const Fretboard = (props) => {
   // Setup state variables based on user input
   const [tuning, setTuning] = useState(["E2", "A2", "D3", "G3", "B3", "E4"]);
   const [numberOfFrets, setNumberOfFrets] = useState(16);
-  const [leftHanded, setLeftHanded] = useState(false);
+  const [rightHanded, setRightHanded] = useState(true);
   const [tonic, setTonic] = useState("C");
 
-  // Reverse tuning if left handed
-  if (!leftHanded) {
-    tuning.reverse();
+  // Reverse tuning if !left handed
+  if (rightHanded) {
+    // setTuning(tuning.reverse());
+    // console.log(tuning);
   }
   // Create array of strings based on tuning & handedness
-  let guitarStrings = tuning.map((n, i) => (
-    <String
-      key={i}
-      order={i}
-      rootNote={n}
-      numberOfFrets={numberOfFrets}
-      tonic={tonic}
-      fretWidths={calculateCurrentFretWidths(
-        numberOfFrets,
-        calculateNeckLength(numberOfFrets),
-      )}
-    />
-  ));
+  let guitarStrings = tuning
+    .reverse()
+    .map((n, i) => (
+      <String
+        key={i}
+        order={i}
+        rootnote={n}
+        numfrets={numberOfFrets}
+        tonic={tonic}
+        fretwidths={calculateCurrentFretWidths(
+          numberOfFrets,
+          calculateNeckLength(numberOfFrets),
+        )}
+        currentscale={currentScale}
+      />
+    ));
 
-  // Return the fretboard component
-  return (
-    <div id="fretboard">
-      <div id="nut">{props.name}</div>
-      {guitarStrings}
-    </div>
-  );
-};
+  return <div id="fretboard">{guitarStrings}</div>;
+}
 
 export default Fretboard;

@@ -15,7 +15,7 @@ export const TonicProvider = ({ children }) => {
   const [tonic, setTonic] = useState("C");
 
   return (
-    <TonicContext.Provider value={[tonic, setTonic]}>
+    <TonicContext.Provider value={{ tonic, setTonic }}>
       {children}
     </TonicContext.Provider>
   );
