@@ -14,11 +14,13 @@ function Fret(props) {
     setRootNote(props.note);
   };
 
+  console.log(props);
   return (
     <li
       key={"string-" + props.order + "-fret-" + props.index}
       id={"string-" + props.order + "-fret-" + props.index}
       className="fret"
+      style={{ width: props.width + "px" }}
       onClick={handleClick}
     >
       {/*{console.info("FRET!")}*/}

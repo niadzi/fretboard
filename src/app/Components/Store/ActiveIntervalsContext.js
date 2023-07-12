@@ -6,7 +6,14 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import { useContext } from "react";
-import { Intervals, Notes } from "../Utils/MusicTheory";
+import {
+  calculateSelectedIntervals,
+  initSelectedIntervals,
+  Intervals,
+  Note,
+  Notes,
+  Scales,
+} from "../Utils/MusicTheory";
 
 const activeIntervals = [
   { note: "A", active: true, interval: "R" },
@@ -29,7 +36,7 @@ export const useActiveIntervals = () => useContext(ActiveIntervalsContext);
 
 export const ActiveIntervalsProvider = ({ children }) => {
   const [activeIntervals, setActiveIntervals] = useState([]);
-  const activeIntervalsX = [];
+  //const activeIntervalsX = [];
 
   const [currentScale, setCurrentScale] = useState([
     "A",
@@ -42,6 +49,11 @@ export const ActiveIntervalsProvider = ({ children }) => {
   ]);
   const [notesInScale, setNotesInScale] = useState([]);
 
+  const activeNotes = [];
+  initSelectedIntervals.forEach((note) => {
+    activeNotes.push(new Note(note.name, note.active, note.interval));
+  });
+
   useEffect(() => {
     const updatedNotesInScale = Notes.map((note) => ({
       note,
@@ -50,7 +62,14 @@ export const ActiveIntervalsProvider = ({ children }) => {
 
     setNotesInScale(updatedNotesInScale);
     console.log("notesInScale", notesInScale);
+    setActiveIntervals(calculateSelectedIntervals("A", Scales["Ionian"]));
   }, [currentScale]);
+
+  // console.log(calculateSelectedIntervals("A", Scales["Ionian"]));
+  // console.log(calculateSelectedIntervals("C", Scales["Ionian"]));
+  // console.log(calculateSelectedIntervals("D", Scales["Pentatonic Major"]));
+  // console.log(calculateSelectedIntervals("E", Scales["Pentatonic Minor"]));
+  // console.log(calculateSelectedIntervals("E", [0, 7]));
 
   return (
     <ActiveIntervalsContext.Provider

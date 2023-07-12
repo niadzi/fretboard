@@ -124,6 +124,40 @@ export class Note {
   }
 }
 
+export const initSelectedIntervals = [
+  { name: "A", active: true, interval: "R" },
+  { name: "A#", active: false, interval: "m2" },
+  { name: "B", active: true, interval: "M2" },
+  { name: "C", active: false, interval: "m3" },
+  { name: "C#", active: true, interval: "M3" },
+  { name: "D", active: true, interval: "P4" },
+  { name: "D#", active: false, interval: "TT" },
+  { name: "E", active: true, interval: "P5" },
+  { name: "F", active: false, interval: "m6" },
+  { name: "F#", active: true, interval: "M6" },
+  { name: "G", active: false, interval: "m7" },
+  { name: "G#", active: true, interval: "M7" },
+];
+
+export function calculateSelectedIntervals(tonic, scale) {
+  const selectedIntervals = [];
+  const scaleNotes = Scales[scale];
+  const tonicIndex = Notes.indexOf(tonic);
+  const tonicNote = Notes[tonicIndex];
+  const tonicPitch = PitchedNotes[tonicIndex];
+  scale.forEach((intervalIndex) => {
+    const interval = Intervals[intervalIndex];
+    const note = Notes[(tonicIndex + intervalIndex) % 12];
+    const intervalActive = true;
+    selectedIntervals.push({
+      name: note,
+      interval: interval,
+      active: intervalActive,
+    });
+  });
+  return selectedIntervals;
+}
+
 //export default Notes; // = Scales;
 //export default PitchedNotes;
 //export default Scales;

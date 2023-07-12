@@ -15,6 +15,10 @@ import {
 import { TonicProvider } from "./Components/Store/TonicContext";
 import FretboardSettings from "./Components/UI/FretboardSettings";
 import {
+  calculateSelectedIntervals,
+  initSelectedIntervals,
+} from "./Components/Utils/MusicTheory";
+import {
   Notes,
   Scales,
   PitchedNotes,
@@ -30,50 +34,16 @@ export default function Home() {
     ssr: false,
   });
 
-  const selectedIntervals = [
-    { name: "A", active: true, interval: "R" },
-    { name: "A#", active: false, interval: "m2" },
-    { name: "B", active: true, interval: "M2" },
-    { name: "C", active: false, interval: "m3" },
-    { name: "C#", active: true, interval: "M3" },
-    { name: "D", active: true, interval: "P4" },
-    { name: "D#", active: false, interval: "TT" },
-    { name: "E", active: true, interval: "P5" },
-    { name: "F", active: false, interval: "m6" },
-    { name: "F#", active: true, interval: "M6" },
-    { name: "G", active: false, interval: "m7" },
-    { name: "G#", active: true, interval: "M7" },
-  ];
-
-  const activeNotes = [];
-  selectedIntervals.forEach((note) => {
-    activeNotes.push(new Note(note.name, note.active, note.interval));
-  });
-
-  function calculateSelectedIntervals(tonic, scale) {
-    const selectedIntervals = [];
-    const scaleNotes = Scales[scale];
-    const tonicIndex = Notes.indexOf(tonic);
-    const tonicNote = Notes[tonicIndex];
-    const tonicPitch = PitchedNotes[tonicIndex];
-    scale.forEach((intervalIndex) => {
-      const interval = Intervals[intervalIndex];
-      const note = Notes[(tonicIndex + intervalIndex) % 12];
-      const intervalActive = true;
-      selectedIntervals.push({
-        name: note,
-        interval: interval,
-        active: intervalActive,
-      });
-    });
-    return selectedIntervals;
-  }
-
-  console.log(calculateSelectedIntervals("A", Scales["Ionian"]));
-  console.log(calculateSelectedIntervals("C", Scales["Ionian"]));
-  console.log(calculateSelectedIntervals("D", Scales["Pentatonic Major"]));
-  console.log(calculateSelectedIntervals("E", Scales["Pentatonic Minor"]));
-  console.log(calculateSelectedIntervals("E", [0, 7]));
+  // const activeNotes = [];
+  // initSelectedIntervals.forEach((note) => {
+  //   activeNotes.push(new Note(note.name, note.active, note.interval));
+  // });
+  //
+  // console.log(calculateSelectedIntervals("A", Scales["Ionian"]));
+  // console.log(calculateSelectedIntervals("C", Scales["Ionian"]));
+  // console.log(calculateSelectedIntervals("D", Scales["Pentatonic Major"]));
+  // console.log(calculateSelectedIntervals("E", Scales["Pentatonic Minor"]));
+  // console.log(calculateSelectedIntervals("E", [0, 7]));
 
   // const initialState = {
   //   tonic: "A",

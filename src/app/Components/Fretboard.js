@@ -10,7 +10,7 @@ import { ActiveIntervalsProvider } from "./Store/ActiveIntervalsContext";
 //import ActiveIntervals from "./ActiveIntervals";
 
 function Fretboard(props) {
-  console.log(props);
+  //console.log(props);
   const { currentScale } = useScale();
 
   const [isServer, setIsServer] = useState(true);
