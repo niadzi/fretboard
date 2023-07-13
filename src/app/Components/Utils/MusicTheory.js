@@ -1,4 +1,4 @@
-export const Notes = [
+export const NOTES = [
   "A",
   "A#",
   "B",
@@ -13,7 +13,7 @@ export const Notes = [
   "G#",
 ];
 
-export const PitchedNotes = [
+export const PITCHED_NOTES = [
   "A2",
   "A#2",
   "B2",
@@ -88,7 +88,7 @@ export const PitchedNotes = [
   "G#7",
 ];
 
-export const Scales = {
+export const SCALES = {
   Fifths: [0, 7],
   "Pentatonic Minor": [0, 3, 5, 7, 10],
   "Pentatonic Major": [0, 2, 4, 7, 9],
@@ -101,7 +101,7 @@ export const Scales = {
   Locrian: [0, 1, 3, 5, 6, 8, 10],
 };
 
-export const Intervals = [
+export const INTERVALS = [
   "R",
   "m2",
   "M2",
@@ -139,24 +139,36 @@ export const initSelectedIntervals = [
   { name: "G#", active: true, interval: "M7" },
 ];
 
+export const initialIntervalsState = calculateSelectedIntervals(
+  "A",
+  SCALES["Ionian"],
+);
+//     {
+//   tonic: "A",
+//   scale: SCALES["Ionian"],
+//   intervals: calculateSelectedIntervals("A", SCALES["Ionian"]),
+// };
+
+// tonic: string, scale: array of 12 intervals
 export function calculateSelectedIntervals(tonic, scale) {
   const selectedIntervals = [];
-  const scaleNotes = Scales[scale];
-  const tonicIndex = Notes.indexOf(tonic);
-  const tonicNote = Notes[tonicIndex];
-  const tonicPitch = PitchedNotes[tonicIndex];
-  scale.forEach((intervalIndex) => {
-    const interval = Intervals[intervalIndex];
-    const note = Notes[(tonicIndex + intervalIndex) % 12];
-    const intervalActive = true;
-    selectedIntervals.push({
-      name: note,
-      interval: interval,
-      active: intervalActive,
-    });
+  const tonicIndex = NOTES.indexOf(tonic);
+  // const tonicNote = NOTES[tonicIndex];
+  // const tonicPitch = PITCHED_NOTES[tonicIndex];
+  INTERVALS.forEach((intervalName, intervalIndex) => {
+    //  const interval = INTERVALS[intervalIndex];
+    const note = NOTES[(tonicIndex + intervalIndex) % 12];
+    const intervalActive = scale.includes(intervalIndex);
+    selectedIntervals.push(new Note(note, intervalName, intervalActive));
   });
   return selectedIntervals;
 }
+
+// console.log(calculateSelectedIntervals("A", Scales["Ionian"]));
+// console.log(calculateSelectedIntervals("C", Scales["Ionian"]));
+// console.log(calculateSelectedIntervals("D", Scales["Pentatonic Major"]));
+// console.log(calculateSelectedIntervals("E", Scales["Pentatonic Minor"]));
+// console.log(calculateSelectedIntervals("E", [0, 7]));
 
 //export default Notes; // = Scales;
 //export default PitchedNotes;

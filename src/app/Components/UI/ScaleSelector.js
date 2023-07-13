@@ -1,18 +1,18 @@
 import React from "react";
 import { useScale } from "../Store/ScaleContext";
-import { Scales } from "../Utils/MusicTheory";
+import { SCALES } from "../Utils/MusicTheory";
 
 function ScaleSelector() {
   const { setScale } = useScale();
 
   const handleScaleSelectorChange = (event) => {
-    const scale = Scales[event.target.value];
+    const scale = SCALES[event.target.value];
     setScale(scale);
   };
 
   return (
-    <select onChange={handleScaleSelectorChange}>
-      {Object.keys(Scales).map((scale, index) => (
+    <select multiple id="scale-selector" onChange={handleScaleSelectorChange}>
+      {Object.keys(SCALES).map((scale, index) => (
         <option key={index} value={scale}>
           {scale}
         </option>

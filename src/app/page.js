@@ -16,81 +16,25 @@ import { TonicProvider } from "./Components/Store/TonicContext";
 import FretboardSettings from "./Components/UI/FretboardSettings";
 import {
   calculateSelectedIntervals,
+  initialIntervalsState,
   initSelectedIntervals,
 } from "./Components/Utils/MusicTheory";
 import {
-  Notes,
-  Scales,
-  PitchedNotes,
-  Intervals,
+  NOTES,
+  SCALES,
+  PITCHED_NOTES,
+  INTERVALS,
   Note,
 } from "./Components/Utils/MusicTheory";
 import { TonicSelector } from "./Components/UI/TonicSelector";
-
+import { IntervalToggles } from "./Components/UI/IntervalToggles";
+import "./page.scss";
 //import FretBoard from "./FretBoard"; // Assuming you have a FretBoard component
 
 export default function Home() {
   const NoSSRFretboard = dynamic(() => import("./Components/Fretboard"), {
     ssr: false,
   });
-
-  // const activeNotes = [];
-  // initSelectedIntervals.forEach((note) => {
-  //   activeNotes.push(new Note(note.name, note.active, note.interval));
-  // });
-  //
-  // console.log(calculateSelectedIntervals("A", Scales["Ionian"]));
-  // console.log(calculateSelectedIntervals("C", Scales["Ionian"]));
-  // console.log(calculateSelectedIntervals("D", Scales["Pentatonic Major"]));
-  // console.log(calculateSelectedIntervals("E", Scales["Pentatonic Minor"]));
-  // console.log(calculateSelectedIntervals("E", [0, 7]));
-
-  // const initialState = {
-  //   tonic: "A",
-  //   namedScale: "Ionian",
-  //   activeIntervals: Scales["Ionian"],
-  //   notes: ["A", "B", "C#", "D", "E", "F#", "G#"],
-  // };
-  //
-  // const UPDATE_NOTES = "UPDATE_NOTES";
-  // const SET_TONIC = "SET_TONIC";
-  // const SET_SCALE = "SET_SCALE";
-  // const TOGGLE_INTERVAL = "TOGGLE_INTERVAL";
-  //
-  // // calculate an array of notes from a tonic and a scale
-  // // e.g. getNotes ("C", "Ionian") => ["C", "D", "E", "F", "G", "A", "B"]
-  // // getNotes ("C", "Dorian") => ["C", "D", "Eb", "F", "G", "A", "Bb"]
-  // // tonic: string
-  // // scale: array of intervals
-  // const calculateIntervals = (tonic, scale) => {};
-  //
-  // function reducer(state, action) {
-  //   switch (action.type) {
-  //     case UPDATE_NOTES:
-  //       //calculateNotes(state.tonic, state.scale);
-  //       return {
-  //         tonic: "C",
-  //         namedScale: "Ionian",
-  //         activeIntervals: Scales["Ionian"],
-  //         notes: ["C", "D", "E", "F", "G", "A", "B"],
-  //       };
-  //     case SET_TONIC:
-  //       return {
-  //         tonic: action.tonic,
-  //         namedScale: state.namedScale,
-  //         activeIntervals: state.activeIntervals,
-  //         notes: ["C", "D", "E", "F", "G", "A", "B"],
-  //       };
-  //     case SET_SCALE:
-  //       return {
-  //         username: state.username,
-  //         gender: state.gender,
-  //         age: action.age,
-  //       };
-  //     default:
-  //       return initialState;
-  //   }
-  // }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -116,10 +60,13 @@ export default function Home() {
       </div>
       <ScaleProvider>
         <TonicProvider>
-          <ActiveIntervalsProvider>
-            <ScaleSelector />
-            <TonicSelector />
+          <ActiveIntervalsProvider value={initialIntervalsState}>
             <NoSSRFretboard />
+            <fieldset className={"grid grid-cols-2"}>
+              <TonicSelector />
+              <ScaleSelector />
+            </fieldset>
+            <IntervalToggles />
           </ActiveIntervalsProvider>
         </TonicProvider>
       </ScaleProvider>

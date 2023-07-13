@@ -2,78 +2,76 @@
 // This context is used to store the notes that are currently active on the fretboard.
 //  This is used to highlight the notes on the fretboard.
 //  The context is used in the Fret component to determine if the note should be highlighted.
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import { useContext } from "react";
 import {
   calculateSelectedIntervals,
+  initialIntervalsState,
   initSelectedIntervals,
-  Intervals,
+  INTERVALS,
   Note,
-  Notes,
-  Scales,
+  NOTES,
+  SCALES,
 } from "../Utils/MusicTheory";
+import { compressSymbols } from "babel-plugin-styled-components/lib/minify";
 
-const activeIntervals = [
-  { note: "A", active: true, interval: "R" },
-  { note: "A#", active: false, interval: "m2" },
-  { note: "B", active: true, interval: "M2" },
-  { note: "C", active: false, interval: "m3" },
-  { note: "C#", active: true, interval: "M3" },
-  { note: "D", active: true, interval: "P4" },
-  { note: "D#", active: false, interval: "TT" },
-  { note: "E", active: true, interval: "P5" },
-  { note: "F", active: false, interval: "m6" },
-  { note: "F#", active: true, interval: "M6" },
-  { note: "G", active: false, interval: "m7" },
-  { note: "G#", active: true, interval: "M7" },
-];
-
-const ActiveIntervalsContext = createContext(activeIntervals);
-
-export const useActiveIntervals = () => useContext(ActiveIntervalsContext);
+export const ActiveIntervalsContext = createContext([]);
 
 export const ActiveIntervalsProvider = ({ children }) => {
-  const [activeIntervals, setActiveIntervals] = useState([]);
-  //const activeIntervalsX = [];
+  //const [activeIntervals, setActiveIntervals] = useState(initialIntervalsState);
 
-  const [currentScale, setCurrentScale] = useState([
-    "A",
-    "B",
-    "C#",
-    "D",
-    "E",
-    "F#",
-    "G#",
-  ]);
-  const [notesInScale, setNotesInScale] = useState([]);
+  const activeIntervals = initialIntervalsState;
+  const intervalsReducer = (state, action) => {
+    switch (action.type) {
+      case "SET_TONIC":
+        return {
+          ...state,
+          tonic: action.payload,
+        };
+      case "SET_SCALE":
+        return {
+          ...state,
+          namedScale: action.payload,
+          activeIntervals: SCALES[action.payload],
+        };
+      case "TOGGLE_INTERVAL":
+        const newIntervals = [...activeIntervals];
+        // const active = activeIntervals[action.payload];
+        console.log("TOGGLE_INTERVAL");
+        //console.log(newIntervals[INTERVALS.indexOf(action.payload)]["active"]);
+        activeIntervals[INTERVALS.indexOf(action.payload)]["active"] =
+          !activeIntervals[INTERVALS.indexOf(action.payload)]["active"];
+        //newIntervals[INTERVALS.indexOf(action.payload)] = !active;
+        //console.log(newIntervals);
+        //console.log(action.payload);
+        //console.log(state);
+        console.log(newIntervals);
+        //console.log(activeIntervalsState);
+        return {
+          //state,
+          activeIntervals: newIntervals,
+        };
+      default:
+        return state;
+    }
+  };
 
-  const activeNotes = [];
-  initSelectedIntervals.forEach((note) => {
-    activeNotes.push(new Note(note.name, note.active, note.interval));
-  });
+  const [activeIntervalsState, dispatch] = useReducer(
+    intervalsReducer,
+    () => initialIntervalsState,
+    //() => initialIntervalsState,
+  );
 
-  useEffect(() => {
-    const updatedNotesInScale = Notes.map((note) => ({
-      note,
-      active: currentScale.includes(note),
-    }));
+  // useEffect(() => {
+  //   setActiveIntervals(calculateSelectedIntervals("D", Scales["Ionian"]));
+  // }, []);
 
-    setNotesInScale(updatedNotesInScale);
-    console.log("notesInScale", notesInScale);
-    setActiveIntervals(calculateSelectedIntervals("A", Scales["Ionian"]));
-  }, [currentScale]);
-
-  // console.log(calculateSelectedIntervals("A", Scales["Ionian"]));
-  // console.log(calculateSelectedIntervals("C", Scales["Ionian"]));
-  // console.log(calculateSelectedIntervals("D", Scales["Pentatonic Major"]));
-  // console.log(calculateSelectedIntervals("E", Scales["Pentatonic Minor"]));
-  // console.log(calculateSelectedIntervals("E", [0, 7]));
-
+  //console.log(activeIntervals);
   return (
     <ActiveIntervalsContext.Provider
-      value={[activeIntervals, setActiveIntervals]}
+      value={{ activeIntervals, activeIntervalsState, dispatch }}
     >
       {children}
     </ActiveIntervalsContext.Provider>

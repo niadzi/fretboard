@@ -1,0 +1,65 @@
+ol li {
+    display: inline-block;
+    text-align: center;
+}
+
+/* Nut */
+.fret-0 {
+    background-color: #aaa;
+}
+
+li:active {
+    border: 1px solid hotpink;
+}
+
+.R {
+    background: #ff2424;
+}
+
+.m2 {
+    background: #ff9e24;
+}
+
+.M2 {
+    background: #ffc424;
+}
+
+.m3 {
+    background: #ffea00;
+}
+
+.M3 {
+    background: #ecfb3b;
+}
+
+.P4 {
+    background: #a9ff55;
+}
+
+.TT {
+    background: #2dffbd;
+}
+
+.P5 {
+    background: #7cc9fa;
+}
+
+.m6 {
+    background: #b43fff;
+}
+
+.M6 {
+    background: #d537e3;
+}
+
+.m7 {
+    background: #ff2ecc;
+}
+
+.M7 {
+    background: #ff45ae;
+}
+
+.inactive-interval {
+    background: none;
+}
