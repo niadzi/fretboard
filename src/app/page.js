@@ -33,9 +33,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //import FretBoard from "./FretBoard"; // Assuming you have a FretBoard component
 
 export default function Home() {
-  const NoSSRFretboard = dynamic(() => import("./Components/Fretboard"), {
-    ssr: false,
-  });
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 py-8 bg-white">
       <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex">
@@ -61,7 +59,7 @@ export default function Home() {
       <ScaleProvider>
         <TonicProvider>
           <ActiveIntervalsProvider value={initialIntervalsState}>
-            <NoSSRFretboard />
+            <Fretboard />
             <IntervalToggles />
             <fieldset className={"grid grid-cols-2"}>
               <TonicSelector />

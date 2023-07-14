@@ -30,11 +30,11 @@ const String = (props) => {
   //console.log(props);
   // Root Note (C4, E5 etc) & length (passed from Fretboard)
   // calculate array of notes starting from root note where length = numberOfFret
-  function calculateNotes(rootNote, length, activeIntervals) {
+  function calculateNotes(openNote, length, activeIntervals) {
     let notes = [];
-    let pitchedNoteIndex = PITCHED_NOTES.findIndex((val) => val === rootNote);
+    let pitchedNoteIndex = PITCHED_NOTES.findIndex((val) => val === openNote);
     let noteIndex = activeIntervals["activeIntervals"].findIndex(
-      (note) => note.name === rootNote.slice(0, -1),
+      (note) => note.name === openNote.slice(0, -1),
     );
     // console.log(activeIntervals["activeIntervals"]);
 
@@ -51,8 +51,8 @@ const String = (props) => {
   }
 
   const fretNotes = calculateNotes(
-    props.rootnote,
-    props.numfrets,
+    props.openNote,
+    props.numFrets,
     activeIntervals,
   );
   // console.log(fretNotes);
@@ -63,12 +63,11 @@ const String = (props) => {
       id={"string-" + props.order}
       className="string"
     >
-      <label key={"label" + props.order}>{props.rootNote}</label>
       <hr className="string-hr" />
       {/*{console.info("STRING!")}*/}
       {/*{console.log(props)}*/}
 
-      <Nut note={props.rootnote}></Nut>
+      <Nut note={props.openNote}></Nut>
 
       {fretNotes.map((note, i) => (
         <Fret
@@ -80,7 +79,7 @@ const String = (props) => {
           interval={note.interval}
           string={props.order}
           //interval={i}
-          width={props.fretwidths[i]}
+          width={props.fretWidths[i]}
         />
       ))}
     </ol>

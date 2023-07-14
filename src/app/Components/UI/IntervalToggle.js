@@ -2,9 +2,7 @@ import { ActiveIntervalsContext } from "../Store/ActiveIntervalsContext";
 import { useContext } from "react";
 import "./IntervalToggle.css";
 export function IntervalToggle({ interval, active }) {
-  const { activeIntervals, activeIntervalsState, dispatch } = useContext(
-    ActiveIntervalsContext,
-  );
+  const { dispatch } = useContext(ActiveIntervalsContext);
   return (
     <li>
       <input
