@@ -9,10 +9,11 @@ import { useContext } from "react";
 import { ActiveIntervalsContext } from "./Store/ActiveIntervalsContext";
 import { Nut } from "./Nut";
 const String = (props) => {
-  const { currentScale } = useScale();
-  const activeIntervals = useContext(ActiveIntervalsContext);
+  //const { currentScale } = useScale();
+  const { intervalsState, dispatch } = useContext(ActiveIntervalsContext);
+  console.log(intervalsState["activeIntervals"]);
 
-  const noteIsActive = (note) => {};
+  //const noteIsActive = (note) => {};
 
   // get note interval, and check if its active
   // if active, add class to fret
@@ -20,9 +21,9 @@ const String = (props) => {
   // if note is root note, add class to fret
   // if note is not root note, remove class from fret
 
-  const noteInfo = (note) => {
-    const interval = note.slice(-1);
-  };
+  // const noteInfo = (note) => {
+  //   const interval = note.slice(-1);
+  // };
   //const tone = props.note["note"].slice(0, -1);
   //console.log(activeIntervals);
   //console.log(props.note.slice(0, -1));
@@ -33,14 +34,19 @@ const String = (props) => {
   function calculateNotes(openNote, length, activeIntervals) {
     let notes = [];
     let pitchedNoteIndex = PITCHED_NOTES.findIndex((val) => val === openNote);
-    let noteIndex = activeIntervals["activeIntervals"].findIndex(
-      (note) => note.name === openNote.slice(0, -1),
+    // let noteIndex = activeIntervals.findIndex(
+    //   (note) => note.name === openNote.slice(0, -1),
+    // );
+    let noteIndex = activeIntervals.findIndex(
+      (Note) => Note.name === openNote.slice(0, -1),
     );
-    // console.log(activeIntervals["activeIntervals"]);
+    // console.log("noteIndex");
+    // console.log(noteIndex);
+    // console.log(activeIntervals);
 
     for (let i = 0; i < length; i++) {
-      let noteData = activeIntervals["activeIntervals"][(noteIndex + i) % 12];
-      console.log(noteData);
+      let noteData = activeIntervals[(noteIndex + i) % 12];
+      //console.log(noteData);
       notes.push({
         pitch: PITCHED_NOTES[i + pitchedNoteIndex],
         interval: noteData["interval"],
@@ -53,7 +59,7 @@ const String = (props) => {
   const fretNotes = calculateNotes(
     props.openNote,
     props.numFrets,
-    activeIntervals,
+    intervalsState["activeIntervals"],
   );
   // console.log(fretNotes);
 

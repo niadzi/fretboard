@@ -1,6 +1,10 @@
 // This component is used to input and display the fretboard settings.
 import React, { useState, useEffect } from "react";
 import FRETWIDTHS from "../FRETWIDTHS";
+import { IntervalToggles } from "./IntervalToggles";
+import { TonicSelector } from "./TonicSelector";
+import { ScaleSelector } from "./ScaleSelector";
+import { NOTES, SCALES } from "../Utils/MusicTheory";
 
 // TODO - replace this with a context function
 // Function to get scale given a root note and a list of intervals
@@ -53,33 +57,15 @@ const FretboardSettings = () => {
     setCurrentScale(SCALES[scaleType]);
   }, [scaleType]);
 
-  const handleScaleRootChange = (e) => {
-    setScaleRoot(NOTES[e.target.value]);
-  };
-
-  const handleScaleTypeChange = (e) => {
-    setScaleType(e.target.value);
-  };
-
   // Your code for creating guitar strings, manipulating them, etc. should go here, converted to use React state and props
 
   return (
     <div>
-      <select id="scale-root-select" onChange={handleScaleRootChange}>
-        {Object.keys(NOTES).map((note, index) => (
-          <option value={index} key={note}>
-            {note}
-          </option>
-        ))}
-      </select>
-
-      <select id="scale-type-select" onChange={handleScaleTypeChange}>
-        {Object.keys(SCALES).map((scale, index) => (
-          <option value={scale} key={scale}>
-            {scale}
-          </option>
-        ))}
-      </select>
+      <IntervalToggles />
+      <fieldset className={"grid grid-cols-2"}>
+        <TonicSelector />
+        <ScaleSelector />
+      </fieldset>
     </div>
   );
 };

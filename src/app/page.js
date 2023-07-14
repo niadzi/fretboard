@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { ScaleProvider } from "./Components/Store/ScaleContext";
 //import { useScale } from "./Store/ScaleContext";
 import { ScaleSelector } from "./Components/UI/ScaleSelector";
-import FretBoard from "./Components/Fretboard";
+import Fretboard from "./Components/Fretboard";
 import DynamicFretboard from "./Components/DynamicFretboard";
 import {
   ActiveIntervalsProvider,
@@ -17,6 +17,7 @@ import FretboardSettings from "./Components/UI/FretboardSettings";
 import {
   calculateSelectedIntervals,
   initialIntervalsState,
+  initialintervalsState,
   initSelectedIntervals,
 } from "./Components/Utils/MusicTheory";
 import {
@@ -30,10 +31,10 @@ import { TonicSelector } from "./Components/UI/TonicSelector";
 import { IntervalToggles } from "./Components/UI/IntervalToggles";
 import "./page.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FretboardSettingsProvider } from "./Components/Store/FretboardSettingsContext";
 //import FretBoard from "./FretBoard"; // Assuming you have a FretBoard component
 
 export default function Home() {
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 py-8 bg-white">
       <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex">
@@ -56,18 +57,12 @@ export default function Home() {
           &lt;Rainbow Tech /&gt;
         </a>
       </div>
-      <ScaleProvider>
-        <TonicProvider>
-          <ActiveIntervalsProvider value={initialIntervalsState}>
-            <Fretboard />
-            <IntervalToggles />
-            <fieldset className={"grid grid-cols-2"}>
-              <TonicSelector />
-              <ScaleSelector />
-            </fieldset>
-          </ActiveIntervalsProvider>
-        </TonicProvider>
-      </ScaleProvider>
+      <FretboardSettingsProvider>
+        <ActiveIntervalsProvider value={initialIntervalsState}>
+          <Fretboard />
+          <FretboardSettings />
+        </ActiveIntervalsProvider>
+      </FretboardSettingsProvider>
     </main>
   );
 }

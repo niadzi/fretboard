@@ -7,7 +7,7 @@ import { ActiveIntervalsContext } from "./Store/ActiveIntervalsContext";
 import { calculateFretWidths } from "./UI/FretboardSettings";
 
 function Fretboard(props) {
-  const activeIntervals = useContext(ActiveIntervalsContext);
+  const { intervalsState, dispatch } = useContext(ActiveIntervalsContext);
 
   // Setup state variables based on user input
   const [tuning, setTuning] = useState(["E4", "B3", "G3", "D3", "A2", "E2"]);
@@ -25,7 +25,7 @@ function Fretboard(props) {
   // Create array of strings based on tuning & handedness
 
   console.log("fretboard says hi");
-  console.log(activeIntervals);
+  console.log(intervalsState);
 
   return (
     <div id="fretboard" className="w-full z-10">

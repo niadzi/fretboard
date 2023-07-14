@@ -139,10 +139,11 @@ export const initSelectedIntervals = [
   { name: "G#", active: true, interval: "M7" },
 ];
 
-export const initialIntervalsState = calculateSelectedIntervals(
-  "A",
-  SCALES["Ionian"],
-);
+export const initialIntervalsState = {
+  activeIntervals: calculateSelectedIntervals("A", SCALES["Ionian"]),
+  tonic: "A",
+  scale: SCALES["Ionian"],
+};
 //     {
 //   tonic: "A",
 //   scale: SCALES["Ionian"],
