@@ -7,6 +7,7 @@ import { useScale } from "./Store/ScaleContext";
 import { NOTES, SCALES, PITCHED_NOTES } from "./Utils/MusicTheory";
 import { useContext } from "react";
 import { ActiveIntervalsContext } from "./Store/ActiveIntervalsContext";
+import { Nut } from "./Nut";
 const String = (props) => {
   const { currentScale } = useScale();
   const activeIntervals = useContext(ActiveIntervalsContext);
@@ -66,6 +67,8 @@ const String = (props) => {
       <hr className="string-hr" />
       {/*{console.info("STRING!")}*/}
       {/*{console.log(props)}*/}
+
+      <Nut note={props.rootnote}></Nut>
 
       {fretNotes.map((note, i) => (
         <Fret

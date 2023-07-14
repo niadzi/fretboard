@@ -15,7 +15,7 @@ function Fret(props) {
   //const { setRootNote } = useScale();
 
   const handleClick = () => {
-    setRootNote(props.note);
+    //setTonic(props.note);
   };
   //console.log("Fret.js");
 
@@ -23,34 +23,28 @@ function Fret(props) {
     <li
       key={"string-" + props.string + "_fret-" + props.index}
       id={"string-" + props.string + "_fret-" + props.index}
-      className={
-        "fret fret-" +
-        props.index +
-        " " +
-        props.note +
-        " " +
-        props.interval +
-        " " +
-        props.active +
-        "-interval"
-      }
-      style={{ width: props.width + "px" }}
+      className={"fret fret-" + props.index + " " + props.note + " "}
+      style={{ width: props.width + "%" }}
       onClick={handleClick}
     >
       {/*{console.info("FRET!")}*/}
       {/*{console.log(props)}*/}
-      <div
-        key={"string-" + props.string + "__fret-" + props.index}
-        id={"string-" + props.string + "__fret" + props.index}
-        //id={props.note}
-        className="fret"
-        //width={FretWidths[props.number]}
-        // data-note={note}
-        // data-tone="7"
-        // data-interval="7"
-        // style={{ width: fretWidth + "px" }}
-      >
-        {props.note}
+      <div>
+        <label
+          key={"string-" + props.string + "__fret-" + props.index}
+          id={"string-" + props.string + "__fret" + props.index}
+          //id={props.note}
+          className={
+            "fret " + props.interval + " " + props.active + "-interval"
+          }
+          //width={FretWidths[props.number]}
+          // data-note={note}
+          // data-tone="7"
+          // data-interval="7"
+          // style={{ width: fretWidth + "px" }}
+        >
+          {props.note}
+        </label>
       </div>
     </li>
   );

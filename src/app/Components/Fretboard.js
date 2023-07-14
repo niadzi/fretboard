@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import String from "./String";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FRETWIDTHS from "./FRETWIDTHS";
 import { useScale } from "./Store/ScaleContext";
 import { ScaleSelector } from "./UI/ScaleSelector";
@@ -23,20 +23,20 @@ function Fretboard(props) {
     @param {Number} fretboardWidth - width of the fretboard in pixels
     @returns {Number[]} fretwidths - array of fret widths in pixels
    */
-  const calculateFretWidths = (numFrets, fretboardWidth) => {
+  const calculateFretWidths = (numFrets) => {
     let fretWidths = [];
-    fretWidths.push(50);
+    fretWidths.push(0);
     let neckLength = 0;
     for (let i = 0; i < numFrets; i++) {
       neckLength += FRETWIDTHS[i];
     }
-    if (typeof window !== "undefined") {
-      fretboardWidth = window.innerWidth * 0.8;
-      for (let i = 0; i < numFrets; i++) {
-        let fretWidth = (FRETWIDTHS[i] / neckLength) * fretboardWidth;
-        fretWidths.push(fretWidth);
-      }
+    //if (typeof window !== "undefined") {
+    //fretboardWidth = window.innerWidth * 0.8;
+    for (let i = 0; i < numFrets; i++) {
+      let fretWidth = (FRETWIDTHS[i] / neckLength) * 98; //fretboardWidth;
+      fretWidths.push(fretWidth);
     }
+    //}
     return fretWidths;
   };
 
@@ -53,6 +53,10 @@ function Fretboard(props) {
   console.log("fretboard says hi");
   console.log(activeIntervals);
 
+  useEffect(() => {
+    const fretWidths = calculateFretWidths(16);
+  }, [window]);
+
   // Reverse tuning if !left handed
   // if (rightHanded) {
   //   //setTuning(tuning.reverse());
@@ -61,7 +65,7 @@ function Fretboard(props) {
   // Create array of strings based on tuning & handedness
 
   return (
-    <div id="fretboard">
+    <div id="fretboard" className="w-full z-10">
       {tuning.map((n, i) => (
         <String
           key={"string--" + i}

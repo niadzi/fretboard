@@ -29,6 +29,7 @@ import {
 import { TonicSelector } from "./Components/UI/TonicSelector";
 import { IntervalToggles } from "./Components/UI/IntervalToggles";
 import "./page.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //import FretBoard from "./FretBoard"; // Assuming you have a FretBoard component
 
 export default function Home() {
@@ -36,37 +37,36 @@ export default function Home() {
     ssr: false,
   });
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <h1 className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 font-mono font-bold">
-          Interactive Guitar Fretboard
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 py-8 bg-white">
+      <div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex">
+        <h1 className="">
+          <Image
+            src="/guitar.png"
+            alt="Cute iridescent guitar"
+            width={80}
+            height={80}
+            id={"guitar-logo"}
+            className={"rotate-45 z-0"}
+          />
         </h1>
         <a
           className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="http://niadzi-muzira.co.uk"
           target="_blank"
           rel="noopener noreferrer"
         >
           &lt;Rainbow Tech /&gt;
-          <Image
-            src="/logo.png"
-            alt="Rainbow Tech"
-            className="dark:invert"
-            width={35}
-            height={35}
-            priority
-          />
         </a>
       </div>
       <ScaleProvider>
         <TonicProvider>
           <ActiveIntervalsProvider value={initialIntervalsState}>
             <NoSSRFretboard />
+            <IntervalToggles />
             <fieldset className={"grid grid-cols-2"}>
               <TonicSelector />
               <ScaleSelector />
             </fieldset>
-            <IntervalToggles />
           </ActiveIntervalsProvider>
         </TonicProvider>
       </ScaleProvider>

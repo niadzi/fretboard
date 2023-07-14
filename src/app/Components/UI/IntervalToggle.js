@@ -13,7 +13,7 @@ export function IntervalToggle({ interval, active }) {
         name={interval + active}
         value={interval}
         defaultChecked={active}
-        className={"option-input checkbox"}
+        className={"option-input checkbox " + interval}
         onChange={() => {
           dispatch({ type: "TOGGLE_INTERVAL", payload: interval });
         }}
