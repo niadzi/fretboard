@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
 import { ActiveIntervalsContext } from "../Store/ActiveIntervalsContext";
-import { SCALES } from "../Utils/MusicTheory";
+import { initialIntervalsState, SCALES } from "../Utils/MusicTheory";
+import "./ScaleSelector.scss";
 
 function ScaleSelector() {
-  const { intervalsState, dispatch } = useContext(ActiveIntervalsContext);
-  const [selectedScale, setSelectedScale] = React.useState("Ionian");
+  const { dispatch } = useContext(ActiveIntervalsContext);
+  const [selectedScale, setSelectedScale] = React.useState("Major Pentatonic");
+  console.log(selectedScale);
   return (
     <select
       id="scale-selector"
       onChange={(event) => {
         setSelectedScale(event.target.value);
-        console.log(event.target.value);
         dispatch({ type: "SET_SCALE", payload: event.target.value });
       }}
-      value={selectedScale}
+      value={selectedScale.toString()}
     >
       {Object.keys(SCALES).map((scale, index) => (
         <option key={index} value={scale}>

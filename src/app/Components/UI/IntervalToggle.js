@@ -1,22 +1,22 @@
 import { ActiveIntervalsContext } from "../Store/ActiveIntervalsContext";
 import { useContext } from "react";
-import "./IntervalToggle.css";
+import "./IntervalToggle.scss";
 export function IntervalToggle({ interval, active }) {
   const { dispatch } = useContext(ActiveIntervalsContext);
+  const isActive = active ? " active" : "";
   return (
     <li>
-      <input
-        type="checkbox"
+      <button
         id={"check-" + interval}
-        name={interval + active}
+        name={interval + " " + active}
         value={interval}
-        defaultChecked={active}
-        className={"option-input checkbox " + interval}
-        onChange={() => {
+        className={"interval-toggle " + interval + isActive}
+        onClick={() => {
           dispatch({ type: "TOGGLE_INTERVAL", payload: interval });
         }}
-      />
-      <label>{interval}</label>
+      >
+        {interval}
+      </button>
       <span></span>
     </li>
   );

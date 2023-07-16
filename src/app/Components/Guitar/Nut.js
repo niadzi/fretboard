@@ -8,7 +8,7 @@ export function Nut({ note }) {
   }
 
   return (
-    <li className="nut" onClick={handleClick}>
+    <li className="nut z-50" onClick={handleClick}>
       <label>{note}</label>
     </li>
   );

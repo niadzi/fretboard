@@ -89,9 +89,12 @@ export const PITCHED_NOTES = [
 ];
 
 export const SCALES = {
-  Fifths: [0, 7],
+  Major: [0, 2, 4, 5, 7, 9, 11],
+  Minor: [0, 2, 3, 5, 7, 8, 10],
   "Pentatonic Minor": [0, 3, 5, 7, 10],
   "Pentatonic Major": [0, 2, 4, 7, 9],
+  "Major Pentatonic": [0, 2, 4, 7, 9],
+  Fifths: [0, 7],
   Ionian: [0, 2, 4, 5, 7, 9, 11],
   Dorian: [0, 2, 3, 5, 7, 9, 10],
   Phrygian: [0, 1, 3, 5, 7, 8, 10],
@@ -140,9 +143,9 @@ export const initSelectedIntervals = [
 ];
 
 export const initialIntervalsState = {
-  activeIntervals: calculateSelectedIntervals("A", SCALES["Ionian"]),
-  tonic: "A",
-  scale: SCALES["Ionian"],
+  activeIntervals: getActiveIntervals("D#", SCALES["Major Pentatonic"]),
+  tonic: "D#",
+  scale: SCALES["Major Pentatonic"],
 };
 //     {
 //   tonic: "A",
@@ -151,7 +154,7 @@ export const initialIntervalsState = {
 // };
 
 // tonic: string, scale: array of 12 intervals
-export function calculateSelectedIntervals(tonic, scale) {
+export function getActiveIntervals(tonic, scale) {
   const selectedIntervals = [];
   const tonicIndex = NOTES.indexOf(tonic);
   // const tonicNote = NOTES[tonicIndex];
@@ -163,6 +166,23 @@ export function calculateSelectedIntervals(tonic, scale) {
     selectedIntervals.push(new Note(note, intervalName, intervalActive));
   });
   return selectedIntervals;
+}
+
+export function activeNotesOnString(openNote, length, activeIntervals) {
+  let notes = [];
+  let pitchedNoteIndex = PITCHED_NOTES.findIndex((val) => val === openNote);
+  let noteIndex = activeIntervals.findIndex(
+    (Note) => Note.name === openNote.slice(0, -1),
+  );
+  for (let i = 0; i < length; i++) {
+    let noteData = activeIntervals[(noteIndex + i) % 12];
+    notes.push({
+      pitch: PITCHED_NOTES[i + pitchedNoteIndex],
+      interval: noteData["interval"],
+      active: noteData["active"] ? "active" : "inactive",
+    });
+  }
+  return notes;
 }
 
 // console.log(calculateSelectedIntervals("A", Scales["Ionian"]));

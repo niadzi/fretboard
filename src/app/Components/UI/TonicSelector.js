@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-import { useTonic } from "../Store/TonicContext";
-import { NOTES } from "../Utils/MusicTheory";
+import { initialIntervalsState, NOTES } from "../Utils/MusicTheory";
 import { ActiveIntervalsContext } from "../Store/ActiveIntervalsContext";
 
+import "./TonicSelector.scss";
 function TonicSelector() {
-  const { intervalsState, dispatch } = useContext(ActiveIntervalsContext);
-  const [selectedTonic, setSelectedTonic] = React.useState("A");
+  const { dispatch } = useContext(ActiveIntervalsContext);
+  const [selectedTonic, setSelectedTonic] = React.useState(
+    initialIntervalsState["tonic"],
+  );
 
   return (
     <select
@@ -14,7 +16,7 @@ function TonicSelector() {
         setSelectedTonic(event.target.value);
         dispatch({ type: "SET_TONIC", payload: event.target.value });
       }}
-      value={selectedTonic}
+      value={selectedTonic.toString()}
     >
       {Object.keys(NOTES).map((note, index) => (
         <option key={index} value={NOTES[index]}>
