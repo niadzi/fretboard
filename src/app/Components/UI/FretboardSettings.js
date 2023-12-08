@@ -1,6 +1,9 @@
 // This component is used to input and display the fretboard settings.
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FRETWIDTHS from "../Utils/FretWidths";
+import { FretboardSettingsContext } from "../Store/FretboardSettingsContext";
+import { ActiveIntervalsContext } from "../Store/ActiveIntervalsContext";
+import { HueSlider } from "./HueSlider";
 export const NUM_FRETS = 16;
 
 /*
@@ -23,7 +26,35 @@ export const calculateFretWidths = (numFrets) => {
   return fretWidths;
 };
 const FretboardSettings = () => {
-  return <fieldset></fieldset>;
+  //console.log(hueAdjust);
+  return (
+    <fieldset>
+      {/*<legend>Fretboard Settings</legend>*/}
+      {/*<label htmlFor="numFrets">Number of Frets</label>*/}
+      {/*<input*/}
+      {/*  type="number"*/}
+      {/*  name="numFrets"*/}
+      {/*  id="numFrets"*/}
+      {/*  min="1"*/}
+      {/*  max="24"*/}
+      {/*  defaultValue="16"*/}
+      {/*/>*/}
+      {/*<label htmlFor="tuning">Tuning</label>*/}
+      {/*<input*/}
+      {/*  type="text"*/}
+      {/*  name="tuning"*/}
+      {/*  id="tuning"*/}
+      {/*  defaultValue="E4,B3,G3,D3,A2,E2"*/}
+      {/*/>*/}
+      {/*<label htmlFor="rightHanded">Right Handed</label>*/}
+      {/*<input*/}
+      {/*  type="checkbox"*/}
+      {/*  name="rightHanded"*/}
+      {/*  id="rightHanded"*/}
+      {/*  defaultChecked*/}
+      {/*/>*/}
+    </fieldset>
+  );
 };
 
 export default FretboardSettings;

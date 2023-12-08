@@ -14,7 +14,7 @@ const Header = () => {
             width={80}
             height={80}
             id={"guitar-logo"}
-            className={"rotate-45 z-0"}
+            className={"rotate-45 z-10"}
           />
         </h1>
         <a
@@ -25,19 +25,7 @@ const Header = () => {
         >
           &lt;Rainbow Tech /&gt;
         </a>
-      </div>
-      <div className="px-4 py-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-0">
-        <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-          <div>
-            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400"></p>
-          </div>
-          <h2 className="max-w-lg mb-6 font-mono text-2xl leading-none text-gray-900 md:mx-auto">
-            <div className={""}>
-              <TonicSelector />
-              <ScaleSelector />
-            </div>
-          </h2>
-        </div>
+        <button className={"z-20"}>Options</button>
       </div>
     </header>
   );

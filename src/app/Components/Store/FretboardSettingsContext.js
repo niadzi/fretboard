@@ -20,6 +20,7 @@ export const FretboardSettingsProvider = ({ children }) => {
     tuning: ["E4", "B3", "G3", "D3", "A2", "E2"],
     rightHanded: true,
     fretWidths: calculateFretWidths(16),
+    hueAdjust: 0,
   };
   const fretboardSettingsReducer = (state, action) => {
     switch (action.type) {
@@ -43,19 +44,23 @@ export const FretboardSettingsProvider = ({ children }) => {
           ...state,
           rightHanded: newIsRightHanded,
         };
+      case "SET_HUE_ADJUST":
+        let newHueAdjust = action.payload;
+        return {
+          ...state,
+          hueAdjust: newHueAdjust,
+        };
       default:
         return initFretboardSettings;
     }
   };
 
-  const [fretboardSettings, fretboardSettingsDispatch] = useReducer(
+  const [fretboardSettings, dispatch] = useReducer(
     fretboardSettingsReducer,
     initFretboardSettings,
   );
   return (
-    <FretboardSettingsContext.Provider
-      value={{ fretboardSettings, fretboardSettingsDispatch }}
-    >
+    <FretboardSettingsContext.Provider value={{ fretboardSettings, dispatch }}>
       {children}
     </FretboardSettingsContext.Provider>
   );

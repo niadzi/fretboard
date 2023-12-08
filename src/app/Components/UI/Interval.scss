@@ -1,113 +1,136 @@
+@import "Colours.scss";
+//
+//.R {
+//  background: #ff2424;
+//}
+//
+//.m2 {
+//  background: #ff9e24;
+//}
+//
+//.M2 {
+//  background: #ffc424;
+//}
+//
+//.m3 {
+//  background: #ffea00;
+//}
+//
+//.M3 {
+//  background: #ecfb3b;
+//}
+//
+//.P4 {
+//  background: #a9ff55;
+//}
+//
+//.TT {
+//  background: #2dffbd;
+//}
+//
+//.P5 {
+//  background: #7cc9fa;
+//}
+//
+//.m6 {
+//  background: #b43fff;
+//}
+//
+//.M6 {
+//  background: #d537e3;
+//}
+//
+//.m7 {
+//  background: #ff2ecc;
+//}
+//
+//.M7 {
+//  background: #ff45ae;
+//}
+//
+//.inactive-interval {
+//  background: none;
+//  color: rgba(0, 0, 0, 0);
+//}
+//
+//.active-interval {
+//  opacity: 0.5;
+//  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+//  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+//  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+//}
 
-.R {
-  background: #ff2424;
-}
+//.R {
+//  background: #ff2424;
+//}
+//
+//.m2 {
+//  background: #ff9e24;
+//}
+//
+//.M2 {
+//  background: #ffc424;
+//}
+//
+//.m3 {
+//  background: #ffea00;
+//}
+//
+//.M3 {
+//  background: #ecfb3b;
+//}
+//
+//.P4 {
+//  background: #a9ff55;
+//}
+//
+//.TT {
+//  background: #2dffbd;
+//}
+//
+//.P5 {
+//  background: #7cc9fa;
+//}
+//
+//.m6 {
+//  background: #b43fff;
+//}
+//
+//.M6 {
+//  background: #d537e3;
+//}
+//
+//.m7 {
+//  background: #ff2ecc;
+//}
+//
+//.M7 {
+//  background: #ff45ae;
+//}
 
-.m2 {
-  background: #ff9e24;
-}
+//.inactive > .inactive-interval > div {
+//  opacity: 0.1;
+//}
+//
+//#fretboard > div > .inactive-interval {
+//  opacity: 0.1;
+//}
+//
+//.inactive-interval {
+//  background: none;
+//  color: rgba(0, 0, 0, 0);
+//}
+//
+//.active-interval {
+//  opacity: 0.5;
+//  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+//  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+//  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+//}
 
-.M2 {
-  background: #ffc424;
-}
+ div .inactive-interval {
+  opacity: 0;
+   background: white !important;
+   border-color: white !important;
 
-.m3 {
-  background: #ffea00;
-}
-
-.M3 {
-  background: #ecfb3b;
-}
-
-.P4 {
-  background: #a9ff55;
-}
-
-.TT {
-  background: #2dffbd;
-}
-
-.P5 {
-  background: #7cc9fa;
-}
-
-.m6 {
-  background: #b43fff;
-}
-
-.M6 {
-  background: #d537e3;
-}
-
-.m7 {
-  background: #ff2ecc;
-}
-
-.M7 {
-  background: #ff45ae;
-}
-
-.inactive-interval {
-  background: none;
-  color: rgba(0, 0, 0, 0);
-}
-
-.active-interval {
-  opacity: 0.5;
-}
-.R {
-  background: #ff2424;
-}
-
-.m2 {
-  background: #ff9e24;
-}
-
-.M2 {
-  background: #ffc424;
-}
-
-.m3 {
-  background: #ffea00;
-}
-
-.M3 {
-  background: #ecfb3b;
-}
-
-.P4 {
-  background: #a9ff55;
-}
-
-.TT {
-  background: #2dffbd;
-}
-
-.P5 {
-  background: #7cc9fa;
-}
-
-.m6 {
-  background: #b43fff;
-}
-
-.M6 {
-  background: #d537e3;
-}
-
-.m7 {
-  background: #ff2ecc;
-}
-
-.M7 {
-  background: #ff45ae;
-}
-
-.inactive-interval {
-  background: none;
-  color: rgba(0, 0, 0, 0);
-}
-
-.active-interval {
-  opacity: 0.5;
 }

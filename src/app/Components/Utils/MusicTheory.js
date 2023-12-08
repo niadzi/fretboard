@@ -143,9 +143,9 @@ export const initSelectedIntervals = [
 ];
 
 export const initialIntervalsState = {
-  activeIntervals: getActiveIntervals("D#", SCALES["Major Pentatonic"]),
+  activeIntervals: getActiveIntervals("D#", SCALES["Major"]),
   tonic: "D#",
-  scale: SCALES["Major Pentatonic"],
+  scale: SCALES["Major"],
 };
 //     {
 //   tonic: "A",
@@ -195,3 +195,47 @@ export function activeNotesOnString(openNote, length, activeIntervals) {
 //export default PitchedNotes;
 //export default Scales;
 //export default Intervals;
+export const INTERVAL_TOGGLE_LIGHTNESS = "77%";
+
+export const INTERVAL_COLOURS_HSL = {
+  R: "hsl(0, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  m2: "hsl(23, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  M2: "hsl(32, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  m3: "hsl(46, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  M3: "hsl(55, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  P4: "hsl(96, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  TT: "hsl(146, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  P5: "hsl(194, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  m6: "hsl(240, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  M6: "hsl(270, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  m7: "hsl(310, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+  M7: "hsl(340, 100%, "+INTERVAL_TOGGLE_LIGHTNESS+"%)",
+};
+
+export const INTERVAL_COLOURS = {
+  R: 0,
+  m2: 23,
+  M2: 32,
+  m3: 46,
+  M3: 55,
+  P4: 96,
+  TT: 146,
+  P5: 194,
+  m6: 240,
+  M6: 270,
+  m7: 310,
+  M7: 340
+};
+
+// $R  : hsl(0, 100%, 77%);
+// $m2 : hsl(23, 100%, 77%);
+// $M2 : hsl(32, 100%, 77%);
+// $m3 : hsl(46, 100%, 77%);
+// $M3 : hsl(55, 100%, 77%);
+// $P4 : hsl(96, 100%, 77%);
+// $TT : hsl(146, 100%, 77%);
+// $P5 : hsl(180, 100%, 77%);
+// $m6 : hsl(240, 100%, 77%);
+// $M6 : hsl(270, 100%, 77%);
+// $m7 : hsl(300, 100%, 77%);
+// $M7 : hsl(330, 100%, 77%);

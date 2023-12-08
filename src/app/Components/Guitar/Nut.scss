@@ -1,12 +1,20 @@
 .string > .nut {
-  width: 40px;
+  width: 10px;
+  height: 100%;
   position: relative;
-  background: linear-gradient(90deg, rgba(144, 139, 139, 1) 0%, rgba(167, 145, 148, 1) 4%, rgba(199, 189, 192, 1) 100%);
   display: inline-block;
+  text-align: center;
+  background: wheat;
+  //top: -3px;
 
   label {
     text-align: center;
     height: 50px;
-    width: 50px;
+    //width: 10px;
+    position: relative;
+    left: -35px;
+    font-size: 0.8rem;
+    color: grey;
+
   }
 }

@@ -1,0 +1,28 @@
+@import url('https://fonts.cdnfonts.com/css/newsflash');@import "https://fonts.googleapis.com/css2?family=Crimson+Prohttps://fonts.googleapis.com/css2?family=Caprasimo";
+
+@import '@fontsource/mononoki';
+@import '@fontsource/special-elite';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import url('https://fonts.cdnfonts.com/css/newsflash');
+@import url('https://fonts.cdnfonts.com/css/equali');
+@import url('https://fonts.cdnfonts.com/css/monster-chiller');
+@import url('https://fonts.cdnfonts.com/css/i-ignite-remove');
+@import url('https://fonts.cdnfonts.com/css/coffee-butter');
+
+* {
+  //font-family: Mononoki, monospace;
+  font-family: 'Space Mono', monospace;
+  //  font-family: 'Special Elite', cursive;
+}
+
+body, main, .bg-white {
+ // background-image: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/gridme.png");
+  //background-image: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/tiny_grid.png");
+  background-image: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/subtle_dots.png");
+}
+select {
+  font-family: 'Coffee Butter','i Ignite Remove','monster chiller', cursive !important;
+  font-size: 3.2rem !important;
+  color: rgba(0,0,0,0.7);
+}

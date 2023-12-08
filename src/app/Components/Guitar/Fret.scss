@@ -1,15 +1,57 @@
-.string .fret {
+@import "../UI/Colours.scss";
+.string > .fret {
     display: inline-block;
     text-align: center;
-    border-left: 1px solid grey;
+    //border-left: 1px solid #edebeb;
+    z-index: 30;
+    position: relative;
+   // box-shadow: rgba(60, 64, 67, 0.1) 0 1px 2px 0, rgba(60, 64, 67, 0.1) 0 1px 1px 1px;
+    //border-left: 1px solid #edebeb;
+    //box-shadow: #6f6f6f 0 1px 1px 0;
+    border-right: 1px solid;
+    //border-left-color: currentcolor;
+    border-bottom: 0px solid;
+   // border-bottom-color: currentcolor;
+    border-color: #dfdfdf;
+    transform: translate(0%,-50%);
+
+    top: -5px;
+
+    .active-fret-button > .fret-button-wrapper {
+        background: white;
+        border-radius: 100%;
+    }
 
     button {
         border-radius: 100%;
         height: 50px;
-        width: 50px;
-        font-size: 12px;
+        width:50px;
+        font-size: 15px;
         margin: 0 auto;
-        border: 0;
+        border:    2px solid rgba(white,0.3);
+        //background-color: rgba(white,0.88) !important;
+        z-index: 10;
+        position: relative;
+        text-shadow: 0 1px 1px rgba(255, 255, 255,1);
+        font-family: 'space mono', monospace;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(9.1px);
+        -webkit-backdrop-filter: blur(9.1px);
+
+    }
+    button:after{
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: calc(100% - 4px);
+        height: 70%;
+        border-radius: 100%;
+        background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    }
+    .active-interval {
+        //color: #888888;
+        //text-shadow: white 0 .51px .51px;
     }
 }
 
@@ -19,60 +61,152 @@
     display: none;
 }
 
-
-.R {
-    background: #ff2424;
+.fret > div {
+    transform: translate(0%,50%);
 }
 
-.m2 {
-    background: #ff9e24;
+#string-0 > .fret {
+    border: 0;
+    box-shadow: none;
+   // border-bottom: 1px solid rgba(60, 64, 67, 0.2);
 }
 
-.M2 {
-    background: #ffc424;
+//#fretboard div {
+
+    .R {
+        background: $R;
+        font-weight: bolder;
+    }
+
+    .m2 {
+        background: $m2;
+    }
+
+    .M2 {
+        background: $M2;
+    }
+
+    .m3 {
+        background: $m3;
+    }
+
+    .M3 {
+        background: $M3;
+    }
+
+    .P4 {
+        background: $P4;
+    }
+
+    .TT {
+        background: $TT;
+    }
+
+    .P5 {
+        background: $P5;
+    }
+
+    .m6 {
+        background: $m6;
+    }
+
+    .M6 {
+        background: $M6;
+    }
+
+    .m7 {
+        background: $m7;
+    }
+
+    .M7 {
+        background: $M7;
+    }
+
+   // .fret .active {
+
+//    }
+//}
+//
+//#fretboard > .fret .active {
+//    button.R {
+//        background: lighten(#ff2424,20%);
+//    }
+//
+//    button.m2 {
+//        background: lighten(#ff9e24,20%);
+//    }
+//
+//    button.M2 {
+//        background: lighten(#ffc424,20%);
+//    }
+//
+//    button.m3 {
+//        background: lighten(#ffea00,20%) ;
+//    }
+//
+//    button.M3 {
+//        background: lighten(#ecfb3b, 20%);
+//    }
+//
+//    .P4 {
+//        background: lighten(#a9ff55,20%);
+//    }
+//
+//    .TT {
+//        background: lighten(#2dffbd,20%);
+//    }
+//
+//    .P5 {
+//        background: lighten(#7cc9fa,20%);
+//    }
+//
+//    .m6 {
+//        background: lighten(#b43fff,20%);
+//    }
+//
+//    .M6 {
+//        background: lighten(#d537e3, 20%);
+//    }
+//
+//    .m7 {
+//        background: lighten(#ff2ecc,20%);
+//    }
+//
+//    .M7 {
+//        background: lighten(#ff45ae,20%);
+//    }
+//
+//    .fret .active {
+//
+//    }
+//}
+
+
+
+.fret {
+
+  //  box-shadow: rgba(60, 64, 67, 0.2)0px 1px 2px 0px, rgba(60, 64, 67, 0.1) -1px 1px 3px 1px;
 }
 
-.m3 {
-    background: #ffea00;
-}
-
-.M3 {
-    background: #ecfb3b;
-}
-
-.P4 {
-    background: #a9ff55;
-}
-
-.TT {
-    background: #2dffbd;
-}
-
-.P5 {
-    background: #7cc9fa;
-}
-
-.m6 {
-    background: #b43fff;
-}
-
-.M6 {
-    background: #d537e3;
-}
-
-.m7 {
-    background: #ff2ecc;
-}
-
-.M7 {
-    background: #ff45ae;
-}
 
 .inactive-interval {
     background: none;
-    color: rgba(0, 0, 0, 0);
+    color: #ebebeb;
 }
 
 .active-interval {
-    opacity: 0.5;
+ //   opacity: 0.5;
+}
+//.fret .inactive {
+//    opacity: 0.1 !important;
+//}
+.active {
+   // opacity: 0.3;
+    //box-shadow: 2px 2px 2px 18px white inset;
+    //background-color: white !important;
+}
+
+.inactive {
+    //opacity: 0.1;
+    //background-color: white !important;
 }

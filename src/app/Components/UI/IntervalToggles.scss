@@ -1,11 +1,79 @@
- #interval-toggles {
-    border: 0;
-   margin-top:50px;
-   li {
-     display: inline-block;
+@import "Colours.scss";
+#interval-toggles {
+  border: 0;
+  margin: 0 auto;
+  display: inline;
+  float: right;
+  li {
+    padding: 5px;
+    display: inline-block;
 
-     label {
-       text-align: center;
-     }
-   }
+    button {
+      z-index: 10;
+      position: relative;
+
+    }
+    button:after{
+
+    }
+
+    label {
+      text-align: center;
+    }
+
+
+    .R {
+      background: $R;
+    }
+
+    .m2 {
+      background: $m2;
+    }
+
+    .M2 {
+      background: $M2;
+    }
+
+    .m3 {
+      background: $m3;
+    }
+
+    .M3 {
+      background: $M3;
+    }
+
+    .P4 {
+      background: $P4;
+    }
+
+    .TT {
+      background: $TT;
+    }
+
+    .P5 {
+      background: $P5;
+    }
+
+    .m6 {
+      background: $m6;
+    }
+
+    .M6 {
+      background: $M6;
+    }
+
+    .m7 {
+      background: $m7;
+    }
+
+    .M7 {
+      background: $M7;
+    }
+
+    .inactive-interval {
+      opacity: 0.5;
+      color: rgba(250, 250, 250, 0.8);
+    }
   }
+}
+

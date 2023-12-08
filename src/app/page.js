@@ -11,6 +11,7 @@ import { IntervalToggles } from "./Components/UI/IntervalToggles";
 import { TonicSelector } from "./Components/UI/TonicSelector";
 import { ScaleSelector } from "./Components/UI/ScaleSelector";
 import { Info } from "./Components/Info";
+import ScaleMenu from "./Components/UI/ScaleMenu";
 
 export default function Home() {
   return (
@@ -18,12 +19,12 @@ export default function Home() {
       <FretboardSettingsProvider>
         <ActiveIntervalsProvider>
           <Header />
-          <FretboardSettings />
           <Fretboard />
-          <IntervalToggles />
+          <ScaleMenu />
+          <FretboardSettings />
         </ActiveIntervalsProvider>
       </FretboardSettingsProvider>
-      <Info></Info>
+      <Info />
     </main>
   );
 }

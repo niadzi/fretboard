@@ -1,5 +1,5 @@
 // Context Provider for ActiveNotesContext
-// Stores the notes/intervals that are currently active on the fretboard.
+// Broadcasts the notes/intervals that are currently active on the fretboard.
 import React, { useReducer } from "react";
 import { createContext } from "react";
 import {
